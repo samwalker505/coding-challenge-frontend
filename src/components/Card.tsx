@@ -37,7 +37,7 @@ const Volume = styled.div`
 `;
 
 const Change = styled.div<{ sign: string }>`
-  color: ${props => (props.sign == "-" ? "#ff6b66" : "#9bd554")};
+  color: ${props => (props.sign === "-" ? "#ff6b66" : "#9bd554")};
 `;
 
 class Card extends React.Component<
@@ -60,22 +60,18 @@ class Card extends React.Component<
   };
   componentWillMount() {
     const { keyPair } = this.props;
-    this.updateInfo(keyPair, 0);
+    this.updateInfo(keyPair);
+    setInterval(() => this.updateInfo(keyPair), 30000);
   }
 
-  updateInfo = (keyPair: string, delay: number) => {
+  updateInfo = (keyPair: string) => {
     console.log(`${keyPair} update at: ${new Date()}`);
-    setTimeout(() => {
-      api
-        .getCurrencyInfo(keyPair)
-        .then(currencyInfo => {
-          this.setState({ currencyInfo });
-          const diff = new Date().getTime() / 1000 - currencyInfo.timestamp;
-          // console.log(diff);
-          this.updateInfo(keyPair, Math.min(30, diff) * 1000);
-        })
-        .catch(err => console.log(err));
-    }, delay);
+    api
+      .getCurrencyInfo(keyPair)
+      .then(currencyInfo => {
+        this.setState({ currencyInfo });
+      })
+      .catch(err => console.log(err));
   };
 
   render() {

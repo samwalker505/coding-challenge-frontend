@@ -19,6 +19,7 @@ class App extends React.Component {
             {currencyList.infos.map(info => {
               return (
                 <div
+                  key={info.keyPair}
                   className="col-xs-12
                                 col-sm-8
                                 col-md-6
