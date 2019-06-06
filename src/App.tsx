@@ -5,7 +5,7 @@ import Card from "./components/Card";
 import styled from "styled-components";
 
 const Container = styled.div`
-  padding: 50px;
+  padding: 30px;
 `;
 class App extends React.Component {
   render() {
