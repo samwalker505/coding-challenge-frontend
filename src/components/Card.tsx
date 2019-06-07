@@ -78,26 +78,22 @@ class Card extends React.Component<
     const { name } = this.props;
     const { currencyInfo } = this.state;
     return (
-      <React.Fragment>
-        {
-          <CardContainer>
-            <Title>{name}</Title>
-            <Price>{currencyInfo.ticker.price}</Price>
-            <LowerInfoGroup className="row">
-              <Group className="col-xs-6">
-                <LowerInfoTitle>volume:</LowerInfoTitle>
-                <Volume>{currencyInfo.ticker.volume || "-"}</Volume>
-              </Group>
-              <Group className="col-xs-6">
-                <LowerInfoTitle>change:</LowerInfoTitle>
-                <Change sign={currencyInfo.ticker.change[0]}>
-                  {currencyInfo.ticker.change}
-                </Change>
-              </Group>
-            </LowerInfoGroup>
-          </CardContainer>
-        }
-      </React.Fragment>
+      <CardContainer>
+        <Title>{name}</Title>
+        <Price>{currencyInfo.ticker.price}</Price>
+        <LowerInfoGroup className="row">
+          <Group className="col-xs-6">
+            <LowerInfoTitle>volume:</LowerInfoTitle>
+            <Volume>{currencyInfo.ticker.volume || "-"}</Volume>
+          </Group>
+          <Group className="col-xs-6">
+            <LowerInfoTitle>change:</LowerInfoTitle>
+            <Change sign={currencyInfo.ticker.change[0]}>
+              {currencyInfo.ticker.change}
+            </Change>
+          </Group>
+        </LowerInfoGroup>
+      </CardContainer>
     );
   }
 }
